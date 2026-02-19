@@ -1,20 +1,23 @@
+from collections import defaultdict
+
+
 class Song:
+    count = 0
+    genres = []
+    artists = []
+    genre_count = defaultdict(int)
+    artist_count = defaultdict(int)
+
     def __init__(self, name, artist, genre):
-        self.name = name
-        self.artist = artist
-        self.genre = genre
+        self.name = name.strip()
+        self.artist = artist.strip()
+        self.genre = genre.strip()
 
         self.add_song_to_count()
         self.add_to_genres()
         self.add_to_artists()
         self.add_to_genre_count()
         self.add_to_artist_count()
-
-    count = 0
-    genres = []
-    artists = []
-    genre_count = {}
-    artists_count = {}
 
     def add_song_to_count(self):
         Song.count += 1
@@ -31,4 +34,4 @@ class Song:
         Song.genre_count[self.genre] = Song.genre_count.get(self.genre, 0) + 1
 
     def add_to_artist_count(self):
-        Song.artists_count[self.artist] = Song.artists_count.get(self.artist, 0) + 1
+        Song.artist_count[self.artist] = Song.artist_count.get(self.artist, 0) + 1
